@@ -59,4 +59,5 @@ export( "commutation.matrix",
         "vandermonde.matrix",
         "vec",
         "vech" )
-        
+useDynLib('matrixcalc', .registration = TRUE)
+importFrom('Rcpp','sourceCpp')

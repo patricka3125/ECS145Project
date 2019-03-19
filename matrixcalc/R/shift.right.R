@@ -1,6 +1,3 @@
-library(Rcpp)
-sourceCpp("shift_right.cpp")
-
 shift.right <- function( A, cols = 1, fill = 0 )
 {
 ###
@@ -29,6 +26,3 @@ shift.right <- function( A, cols = 1, fill = 0 )
 
     return( A )    
 }
-
-a <- matrix(1:9,nrow=3,ncol=3)
-shift.right(a,1,0)

@@ -16,3 +16,8 @@ License: GPL (>= 2)
 Packaged: 2012-09-14 22:54:49 UTC; fred
 Repository: CRAN
 Date/Publication: 2012-09-15 14:22:14
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
+RoxygenNote: 6.1.1

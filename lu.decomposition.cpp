@@ -60,7 +60,7 @@ List ludecomposition(NumericMatrix L, NumericMatrix U, NumericMatrix x, int n) {
 	    }
 	}
 
-	List result = List::create(L, U);
+	List result = List::create(Named("L") = L, Named("U") = U);
 
 	return result;
 }

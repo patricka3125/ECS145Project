@@ -1,3 +1,6 @@
+library(Rcpp)
+sourceCpp("shift_right.cpp")
+
 shift.right <- function( A, cols = 1, fill = 0 )
 {
 ###
@@ -22,7 +25,10 @@ shift.right <- function( A, cols = 1, fill = 0 )
     if ( !is.numeric( fill ) )
         stop( "Argument fill is not numeric" )
     if ( cols > 0 )
-        return( shift.right( cbind( rep( fill, nrow(A) ), A[,1:ncol(A)-1] ),
-                cols - 1, fill ) )
+        return (shift_right(A,cols,fill))
+
     return( A )    
 }
+
+a <- matrix(1:9,nrow=3,ncol=3)
+shift.right(a,1,0)

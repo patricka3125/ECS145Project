@@ -29,7 +29,7 @@ using namespace Rcpp;
 
 using namespace std;
 // [[Rcpp::export]]
-NumericMatrix ludecomposition(NumericMatrix L, NumericMatrix U, NumericMatrix x, int n) {
+List ludecomposition(NumericMatrix L, NumericMatrix U, NumericMatrix x, int n) {
 
 	int ip1, im1;
 	// params: matrices U, x, L, int n
@@ -38,29 +38,32 @@ NumericMatrix ludecomposition(NumericMatrix L, NumericMatrix U, NumericMatrix x,
 	    ip1 = i + 1;
 	    im1 = i - 1;
 	    for ( int j = 1; j <= n; j++ ) {
-	        U[i,j] = x[i,j]
+	        U(i-1,j-1) = x(i-1,j-1);
 	        if ( im1 > 0 ) {
 	            for ( int k = 1; k <= im1; k++ ) {
-	                U[i,j] = U[i,j] - L[i,k] * U[k,j]
+	                U(i-1,j-1) = U(i-1,j-1) - L(i-1,k-1) * U(k-1,j-1);
 	            }
 	        }
 	    }
 	    if ( ip1 <= n ) {
 	        for ( int j = ip1; j <= n; j++ ) {
-	            L[j,i] = x[j,i]
+	            L(j-1,i-1) = x(j-1,i-1);
 	            if ( im1 > 0 ) {
 	                for ( int k = 1; k <= im1; k++ ) {
-	                    L[j,i] = L[j,i] - L[j,k] * U[k,i]
+	                    L(j-1,i-1) = L(j-1,i-1) - L(j-1,k-1) * U(k-1,i-1);
 	                }
 	            }
-	            if ( U[i,i] == 0 )
-	                stop( "argument x is a singular matrix" )
-	            L[j,i] = L[j,i] / U[i,i]
+	            if ( U(i-1,i-1) == 0 )
+	                stop( "argument x is a singular matrix" );
+	            L(j-1,i-1) = L(j-1,i-1) / U(i-1,i-1);
 	        }    
 	    }
 	}
 
-	return // result <- list( L=L, U=U )
+	List result = List::create(L, U);
+
+	return result;
+}
 
 // in R:
 // library(Rcpp)

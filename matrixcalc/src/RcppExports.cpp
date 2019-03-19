@@ -5,6 +5,20 @@
 
 using namespace Rcpp;
 
+// ludecomposition
+List ludecomposition(NumericMatrix L, NumericMatrix U, NumericMatrix x, int n);
+RcppExport SEXP _matrixcalc_ludecomposition(SEXP LSEXP, SEXP USEXP, SEXP xSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type L(LSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type U(USEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(ludecomposition(L, U, x, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // shift_right
 NumericVector shift_right(RObject mat, int cols, int fill);
 RcppExport SEXP _matrixcalc_shift_right(SEXP matSEXP, SEXP colsSEXP, SEXP fillSEXP) {
@@ -18,9 +32,35 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// stirling
+NumericMatrix stirling(int n);
+RcppExport SEXP _matrixcalc_stirling(SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(stirling(n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// toeplitz_matrix
+NumericMatrix toeplitz_matrix(int n, NumericVector x);
+RcppExport SEXP _matrixcalc_toeplitz_matrix(SEXP nSEXP, SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(toeplitz_matrix(n, x));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_matrixcalc_ludecomposition", (DL_FUNC) &_matrixcalc_ludecomposition, 4},
     {"_matrixcalc_shift_right", (DL_FUNC) &_matrixcalc_shift_right, 3},
+    {"_matrixcalc_stirling", (DL_FUNC) &_matrixcalc_stirling, 1},
+    {"_matrixcalc_toeplitz_matrix", (DL_FUNC) &_matrixcalc_toeplitz_matrix, 2},
     {NULL, NULL, 0}
 };
 

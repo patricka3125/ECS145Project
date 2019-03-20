@@ -34,13 +34,3 @@ NumericMatrix stirling(int n) {
   S(0, 0) = 1;
   return S;
 }
-
-
-// You can include R code blocks in C++ files processed with sourceCpp
-// (useful for testing and development). The R code will be automatically 
-// run after the compilation.
-//
-
-/*** R
-stirling(4)
-*/

@@ -20,15 +20,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // shift_right
-NumericVector shift_right(RObject mat, int cols, int fill);
-RcppExport SEXP _matrixcalc_shift_right(SEXP matSEXP, SEXP colsSEXP, SEXP fillSEXP) {
+NumericVector shift_right(RObject mat, Function a, Function b, int cols, int fill);
+RcppExport SEXP _matrixcalc_shift_right(SEXP matSEXP, SEXP aSEXP, SEXP bSEXP, SEXP colsSEXP, SEXP fillSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< RObject >::type mat(matSEXP);
+    Rcpp::traits::input_parameter< Function >::type a(aSEXP);
+    Rcpp::traits::input_parameter< Function >::type b(bSEXP);
     Rcpp::traits::input_parameter< int >::type cols(colsSEXP);
     Rcpp::traits::input_parameter< int >::type fill(fillSEXP);
-    rcpp_result_gen = Rcpp::wrap(shift_right(mat, cols, fill));
+    rcpp_result_gen = Rcpp::wrap(shift_right(mat, a, b, cols, fill));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -58,7 +60,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_matrixcalc_ludecomposition", (DL_FUNC) &_matrixcalc_ludecomposition, 4},
-    {"_matrixcalc_shift_right", (DL_FUNC) &_matrixcalc_shift_right, 3},
+    {"_matrixcalc_shift_right", (DL_FUNC) &_matrixcalc_shift_right, 5},
     {"_matrixcalc_stirling", (DL_FUNC) &_matrixcalc_stirling, 1},
     {"_matrixcalc_toeplitz_matrix", (DL_FUNC) &_matrixcalc_toeplitz_matrix, 2},
     {NULL, NULL, 0}

@@ -22,7 +22,7 @@ shift.right <- function( A, cols = 1, fill = 0 )
     if ( !is.numeric( fill ) )
         stop( "Argument fill is not numeric" )
     if ( cols > 0 )
-        return (shift_right(A,cols,fill))
+        return (shift_right(A,cbind,rep,cols,fill))
 
     return( A )    
 }

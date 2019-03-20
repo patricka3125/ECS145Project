@@ -5,8 +5,8 @@ ludecomposition <- function(L, U, x, n) {
     .Call(`_matrixcalc_ludecomposition`, L, U, x, n)
 }
 
-shift_right <- function(mat, cols = 1L, fill = 0L) {
-    .Call(`_matrixcalc_shift_right`, mat, cols, fill)
+shift_right <- function(mat, a, b, cols = 1L, fill = 0L) {
+    .Call(`_matrixcalc_shift_right`, mat, a, b, cols, fill)
 }
 
 stirling <- function(n) {

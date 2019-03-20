@@ -24,20 +24,21 @@ List u_vectors(int n) {
 	}
 	
 	int levelCount = 1;
-	int zeroInCol = 0;
+//	int zeroInCol = 0;
 	
 	for (int j = 0; j < n; j++) {
 		for (int i = 0; i < n; ++i) {
-			if (zeroInCol != 0) {
+		//	if (zeroInCol != 0) {
+		    if (j > i) {
 				K(i,j) = 0;
-				zeroInCol = zeroInCol - 1;
+			//	zeroInCol = zeroInCol - 1;
 			}
 			else {
 				K(i,j) = levelCount;
 				levelCount = levelCount + 1;
 			}
 		}
-		zeroInCol = j+1;
+	//	zeroInCol = j+1;
 	}
 	
 	List result = List::create(Named("K") = K, Named("I") = I);

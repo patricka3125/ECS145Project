@@ -3,7 +3,7 @@ using namespace Rcpp;
 
 using namespace std;
 
-unsigned int factorial(unsigned int q) 
+unsigned long int factorial(unsigned long int q) 
 {
 	if (q == 0)
 		return 1;
@@ -14,14 +14,9 @@ unsigned int factorial(unsigned int q)
 // [[Rcpp::export]]
 
 NumericMatrix symmetric_pascal_matrix(int n) {
-	if (n < 1)
+	if (n <= 1)
 			stop( "data is too long" );
-			
-/*	for(int i = 1; i <=n; ++i) {
-			factorial *= i;
-	}
-	
-*/
+
 
 	NumericMatrix T(n);
 	
@@ -32,7 +27,10 @@ NumericMatrix symmetric_pascal_matrix(int n) {
 			}
 			
 			else {
-				T(i,j) = factorial(i+j) / (factorial(i) * factorial(j));
+				 unsigned long int above = i + j;
+				 unsigned long int deciI = i;
+				 unsigned long int deciJ = j;
+				 T(i,j) = factorial(above) / (factorial(deciI) * factorial(deciJ));
 			
 			}
 		}
